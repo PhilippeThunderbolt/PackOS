@@ -3,17 +3,20 @@
 
 <img src="images/suitstatus.jpg" width="400">
 
-A portable, sci-fi-inspired telemetry display built on an ESP32 with a 2.8" LCD.  
+A portable, The Expanse-inspired telemetry display built on an ESP32 with a 2.8" LCD.  
 Designed for prop builds, wearables, and experimentation.
 
 ---
 
 ## Features
 
-- Belter-style UI (“PACK STATUS”, telemetry bars, alerts)
-- Highly customizable for all messages and timers
+- Belter-style UI ("boot" screen, telemetry bars, low oxygen alerts)
 - Animated boot sequence with belter inspired messages
+- Configurable "Actvity mode" to set the level of alerts
+- Configurable "glitch mode" that adds random screen noise
+- Highly customizable for all messages and timers
 - Auto-layout adapts to screen size and orientation
+- Low cost ESP32 based module support
 - USB-C or battery powered (LiPo with onboard charging)
 - Modular code structure for easy customization
 
@@ -36,7 +39,7 @@ Designed for prop builds, wearables, and experimentation.
 - Hoyson 4" ESP32 LCD Display  
  <https://www.amazon.com/dp/B0FGJJ24S1>
 
-This board is:
+These Hoyson boards are:
 - Fully assembled (no soldering required)
 - USB-C powered
 - Powerful
@@ -52,10 +55,10 @@ This board is:
 
 Examples:
 - Adafruit Feather ESP32 V2
-- ESP32-S3 boards
+- Generic ESP32-S3 boards
 - RP2040 Feather (with Philhower core TFT_eSPI support)
 
-Any powerful and modern microcontroller with TFT support **should** run the code.
+Any powerful and modern microcontroller with TFT_eSPI library support **should** run the code. 
 
 ### Display Support
 
@@ -84,10 +87,13 @@ Any powerful and modern microcontroller with TFT support **should** run the code
 
 ## Setup Guide
 
+NOTE: This isn't a difficult process, even for non technical Arduino people - if you or a friend cannot
+get this done then you can always contact the author - details at the end of this document.
+
 ### 1. Install Arduino IDE - make sure installed the latest version!
 <https://www.arduino.cc/en/software>
 
-### 2. Install ESP32 Board Support
+### 2. Install ESP32 Board Support in the Arduino IDE
 
 Go to:
 
@@ -117,16 +123,17 @@ You **must configure TFT_eSPI correctly** or the screen will not work.
 
 Edit:
 
-Find your Arduino librarires directory, if you installed to the default location, this should be document/arduino/libraries/TFT_eSPI
+Find your Arduino librarires directory, if you installed to the default location, this should be documents/arduino/libraries/TFT_eSPI
 
 ```text
 TFT_eSPI/User_Setup.h
 ```
 
-In **Section 1**, uncomment **one** driver that matches the display driver used by your board/display. e.g.
+In **Section 1**, uncomment **one** driver that matches the display driver used by your board/display. The display driver will be 
+mentioned in the board documentation or even in the Amazon (oe estore) linke. Uncommenting means removing the double slash: e.g.
 
 ```cpp
-#define ILI9341_DRIVER       // 2.8" Hoyson
+#define ILI9341_DRIVER       // 2.8" Hoyson  THIS ONE IS ACTIVE BECAUSE THE // IS REMOVED
 //#define ST7796_DRIVER      // 4" Hoyson
 ```
 
@@ -135,7 +142,7 @@ In **Section 1**, uncomment **one** driver that matches the display driver used 
 In **Section 2**, edit:
 ```cpp
 // ###### EDIT THE PIN NUMBERS IN THE LINES FOLLOWING TO SUIT YOUR ESP32 SETUP   ######
-// For ESP32 Dev board (only tested with ILI9341 display)  Use for Hoyson Modules.
+// For ESP32 Dev board.  Use for Hoyson Modules.
 // The hardware SPI can be mapped to any pins
 
 #define TFT_MOSI 13
@@ -146,8 +153,8 @@ In **Section 2**, edit:
 #define TFT_DC    2
 #define TFT_RST  -1
 
-#define TFT_BL   21   // 2.8" display
-//#define TFT_BL   27  // 4" display
+#define TFT_BL   21   // 2.8" Hoyson display
+//#define TFT_BL   27  // 4" Hoyson display
 
 #define TOUCH_CS 33
 #define TFT_BACKLIGHT_ON HIGH
@@ -156,8 +163,9 @@ In **Section 2**, edit:
 ## Compile & Upload
 
 1. Connect the board via USB-C  
-2. Select the correct COM port  
-3. Click **Compile**
+2. Select the correct COM port
+3. Make sure the .ino file from github is loaded in the sketch
+4. Click **Compile**
 
 ### If Compile fails
 
@@ -170,7 +178,7 @@ In **Section 2**, edit:
 This project is designed to be easy to modify.
 At the top of the .ino file is a QUICK SETUP sections with variable easy to change - they are well documented.
 
-Here is a subset of them...
+Here is a subset of settings...
 
 ```cpp
 // =====================================================
@@ -180,7 +188,7 @@ Here is a subset of them...
 // Boot screen text
 constexpr const char* BOOT_TITLE = "OPA BeltOS"; //OS Name
 constexpr const char* BOOT_VERSION = "v4.9.26"; //Version of this program
-constexpr const char* BOOT_SYSTEM = "NYNGAN";  //This is the name of your ship
+constexpr const char* BOOT_SYSTEM = "CANTERBURY";  //This is the name of your ship
 
 // Screen direction:
 // true  = portrait
@@ -331,7 +339,7 @@ constexpr bool USE_PORTRAIT_MODE = false; Sets to Landscape orientation.
 
 The UI adapts based on **available vertical space**, not just portrait vs. landscape mode.
 
-The image below shows landscape mode on 
+The image below shows landscape mode on the 4" Hoyson display
 
 <img src="images/largerscreen2.jpg" width="400">
 
@@ -356,6 +364,7 @@ The image below shows landscape mode on
 - Touch-based configuration menu
 - Battery level monitoring
 - SD card assets (images/audio)
+- New .STL file for backpack module that supports the Hoyson 2.8" module.
 
 ---
 
@@ -369,3 +378,17 @@ MIT License – feel free to use and modify.
 
 Inspired by the UI and aesthetic of *The Expanse*.
 Based on original backpack code written by Mark Perino and modified by Dan Shope in April 2021.
+
+This version by Philippe Thunderbolt 4.13.2026
+
+---
+
+## Contact / Support
+
+For questions, suggestions, or issues:
+
+- Post a question on the "Expanse Cosplay" Facebook group
+- Open an issue in this repository
+- Or contact me via GitHub: https://github.com/PhiliipeThunderbolt
+
+If you build your own version, I’d love to see it!
