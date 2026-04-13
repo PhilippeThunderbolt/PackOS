@@ -11,8 +11,8 @@ Designed for prop builds, wearables, and experimentation.
 ## Features
 
 - Belter-style UI (“PACK STATUS”, telemetry bars, alerts)
-- Animated boot sequence
-- Auto-layout adapts to screen size
+- Animated boot sequence with belter inspired messages
+- Auto-layout adapts to screen size and orientation
 - USB-C or battery powered (LiPo with onboard charging)
 - Modular code structure for easy customization
 
