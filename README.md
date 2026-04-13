@@ -1,7 +1,7 @@
 # PackOS – Belter Backpack Display
 ### ESP32 Telemetry UI (Inspired by *The Expanse*)
 
-<img src="images/SuitStatus.jpg" width="400">
+<img src="images/suitstatus.jpg" width="400">
 
 A portable, sci-fi-inspired telemetry display built on an ESP32 with a 2.8" LCD.  
 Designed for prop builds, wearables, and experimentation.
@@ -24,7 +24,7 @@ Designed for prop builds, wearables, and experimentation.
 <img src="images/boot1.jpg" width="400">
 
 ### Main UI
-![Main UI](images/ui.jpg)
+<img src="images/suitstatus2.jpg" width="400">
 
 ---
 
@@ -173,7 +173,7 @@ In **Section 2**, edit:
 
 ---
 
-## 🧠 Configuration & Customization
+## Configuration & Customization
 
 This project is designed to be easy to modify.
 
@@ -185,20 +185,7 @@ constexpr bool USE_PORTRAIT_MODE = false; Sets to Landscape orientation.
 
 The UI adapts based on **available vertical space**, not just portrait vs. landscape mode.
 
-## Project Structure
-
-```text
-PackOS/
-├── README.md
-├── images/
-│   ├── hero.jpg
-│   ├── boot.jpg
-│   ├── ui.jpg
-│   └── board.jpg
-└── src/
-    └── PackOS.ino
-```
-
+<img src="images/largerscreen.jpg" width="400">
 
 ## Troubleshooting
 
