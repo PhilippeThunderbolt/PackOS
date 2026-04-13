@@ -38,7 +38,7 @@ Designed for prop builds, wearables, and experimentation.
 This board is:
 - Fully assembled (no soldering required)
 - USB-C powered
-- Includes onboard battery charging
+- Powerful and inexpensive
 
 ### Supported Platforms
 
