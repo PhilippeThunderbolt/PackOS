@@ -40,7 +40,7 @@ This board is:
 - USB-C powered
 - Powerful and inexpensive
 
-### Supported Platforms
+### PackOS Supported Microcontrollers
 
 | Platform | Status |
 |--------|--------|
@@ -51,7 +51,9 @@ This board is:
 Examples:
 - Adafruit Feather ESP32 V2
 - ESP32-S3 boards
-- RP2040 Feather (with TFT_eSPI support)
+- RP2040 Feather (with Philhower core TFT_eSPI support)
+
+Any powerful and modern microcontroller with TFT support **should** run the code.
 
 ### Display Support
 
