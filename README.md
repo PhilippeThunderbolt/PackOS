@@ -21,7 +21,7 @@ Designed for prop builds, wearables, and experimentation.
 ## Screens
 
 ### Boot Sequence
-![Boot Screen](images/boot.jpg)
+<img src="images/boot1.jpg" width="400">
 
 ### Main UI
 ![Main UI](images/ui.jpg)
