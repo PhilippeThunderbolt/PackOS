@@ -1,5 +1,5 @@
 # PackOS – Belter Backpack Display
-### ESP32 Telemetry UI (Inspired by *The Expanse*)
+## ESP32 Telemetry UI (Inspired by The Expanse)
 
 <img src="images/suitstatus.jpg" width="400">
 
@@ -11,6 +11,7 @@ Designed for prop builds, wearables, and experimentation.
 ## Features
 
 - Belter-style UI (“PACK STATUS”, telemetry bars, alerts)
+- Highly customizable for all messages and timers
 - Animated boot sequence with belter inspired messages
 - Auto-layout adapts to screen size and orientation
 - USB-C or battery powered (LiPo with onboard charging)
@@ -20,11 +21,9 @@ Designed for prop builds, wearables, and experimentation.
 
 ## Screens
 
-### Boot Sequence
-<img src="images/boot1.jpg" width="400">
-
-### Main UI
-<img src="images/suitstatus2.jpg" width="400">
+| Boot Sequence | Main UI |
+|--------------|--------|
+| <img src="images/boot1.jpg" width="300"> | <img src="images/suitstatus2.jpg" width="300"> |
 
 ---
 
@@ -34,11 +33,14 @@ Designed for prop builds, wearables, and experimentation.
 
 - Hoyson 2.8" ESP32 LCD Display  
   <https://www.amazon.com/dp/B0D92C9MMH>
+- Hoyson 4" ESP32 LCD Display  
+ <https://www.amazon.com/dp/B0FGJJ24S1>
 
 This board is:
 - Fully assembled (no soldering required)
 - USB-C powered
-- Powerful and inexpensive
+- Powerful
+- inexpensive
 
 ### PackOS Supported Microcontrollers
 
@@ -58,7 +60,7 @@ Any powerful and modern microcontroller with TFT support **should** run the code
 ### Display Support
 
 - Optimized for **2.8\" 240x320**
-- Tested on **4\" 320x480 (Hoyson)**
+- Tested on **4\" 320x480**
 - UI adapts automatically based on vertical resolution
 
 ### Additional Requirements
@@ -67,7 +69,7 @@ Any powerful and modern microcontroller with TFT support **should** run the code
 - Optional: 3.7V LiPo battery
 
 ### Board Overview
-![Board](images/board.jpg)
+<img src="images/board1.jpg" width="400"> <img src="images/board2.jpg" width="400">
 
 ---
 
@@ -82,22 +84,12 @@ Any powerful and modern microcontroller with TFT support **should** run the code
 
 ## Setup Guide
 
-### 1. Install Arduino IDE
+### 1. Install Arduino IDE - make sure installed the latest version!
 <https://www.arduino.cc/en/software>
 
 ### 2. Install ESP32 Board Support
 
 Go to:
-
-**File → Preferences → Additional Board Manager URLs**
-
-Add:
-
-```text
-https://raw.githubusercontent.com/espressif/arduino-esp32/gh-pages/package_esp32_index.json
-```
-
-Then:
 
 **Tools → Board → Boards Manager → Install “ESP32 by Espressif Systems”**
 
@@ -107,7 +99,7 @@ Then:
 Tools → Board → ESP32 Dev Module
 ```
 
-This works for most ESP32 display boards.
+This works for most ESP32 display boards including the Hoyson board that I used.
 
 ### 4. Install Libraries
 
@@ -117,7 +109,7 @@ Install via Library Manager:
 
 ---
 
-## ⚙️ Display Configuration (Critical)
+## Display Configuration (Critical)
 
 You **must configure TFT_eSPI correctly** or the screen will not work.
 
@@ -125,11 +117,13 @@ You **must configure TFT_eSPI correctly** or the screen will not work.
 
 Edit:
 
+Find your Arduino librarires directory, if you installed to the default location, this should be document/arduino/libraries/TFT_eSPI
+
 ```text
 TFT_eSPI/User_Setup.h
 ```
 
-In **Section 1**, uncomment **one** driver:
+In **Section 1**, uncomment **one** driver that matches the display driver used by your board/display. e.g.
 
 ```cpp
 #define ILI9341_DRIVER       // 2.8" Hoyson
@@ -139,7 +133,7 @@ In **Section 1**, uncomment **one** driver:
 ### Step 2: Set Pins
 
 In **Section 2**, edit:
-
+```cpp
 // ###### EDIT THE PIN NUMBERS IN THE LINES FOLLOWING TO SUIT YOUR ESP32 SETUP   ######
 // For ESP32 Dev board (only tested with ILI9341 display)  Use for Hoyson Modules.
 // The hardware SPI can be mapped to any pins
@@ -159,7 +153,7 @@ In **Section 2**, edit:
 #define TFT_BACKLIGHT_ON HIGH
 ```
 
-## ⚡ Compile & Upload
+## Compile & Upload
 
 1. Connect the board via USB-C  
 2. Select the correct COM port  
@@ -167,25 +161,179 @@ In **Section 2**, edit:
 
 ### If Compile fails
 
-- Look at the error message closely, and trying uploading to an LLM like ChatGPT or Gemini to help troubleshoot.
+- Look at the error messages closely, and trying uploading them to an LLM like ChatGPT or Gemini to help troubleshoot.
 - Verify the correct board and port are selected
 - Try a different USB cable if needed
-
----
 
 ## Configuration & Customization
 
 This project is designed to be easy to modify.
+At the top of the .ino file is a QUICK SETUP sections with variable easy to change - they are well documented.
 
-At the top of the .ino file is a QUICK SETUP sections with variable easy to change - they are well documented
+Here is a subset of them...
+
+```cpp
+// =====================================================
+// QUICK SETUP - SAFE TO EDIT
+// =====================================================
+
+// Boot screen text
+constexpr const char* BOOT_TITLE = "OPA BeltOS"; //OS Name
+constexpr const char* BOOT_VERSION = "v4.9.26"; //Version of this program
+constexpr const char* BOOT_SYSTEM = "NYNGAN";  //This is the name of your ship
+
+// Screen direction:
+// true  = portrait
+// false = landscape
+constexpr bool USE_PORTRAIT_MODE = false;
+
+// How active the display feels
+// 1 = very calm
+// 5 = balanced
+// 10 = very active / busy
+constexpr uint8_t ACTIVITY_LEVEL = 5;
+
+// Turn all visual effects on or off
+// Includes faded scanlines AND glitch effects
+// false = clean display
+// true  = sci-fi effects
+constexpr bool SHOW_GLITCH = false;
+
+// Show a fake OS loading sequence on the boot screen
+constexpr bool SHOW_BOOT_LOADING = true;
+
+// Test mode: start oxygen near the pre-alert zone for quick testing
+constexpr bool ENABLE_LOW_OXYGEN_TEST_MODE = false;
+
+// =====================================================
+// Timers that you can play with
+// =====================================================
+
+// Boot text typing speed in milliseconds per step
+constexpr uint16_t BOOT_TYPE_SPEED_MS = 10;
+
+// How long the progress bar animation takes per boot step
+constexpr uint16_t BOOT_PROGRESS_STEP_MS = 140;
+
+// Pause after boot reaches 100%, in milliseconds
+constexpr uint16_t BOOT_COMPLETE_PAUSE_MS = 4000;
+
+// How long oxygen takes to drain from full to empty
+constexpr uint16_t OXYGEN_DRAIN_MINUTES = 30;
+
+// Low-oxygen pre-alert threshold as a percent
+constexpr uint8_t LOW_OXYGEN_PREALERT_PERCENT = 15;
+
+// Critical oxygen threshold as a percent
+constexpr uint8_t LOW_OXYGEN_CRITICAL_PERCENT = 5;
+
+// Starting oxygen percent when test mode is enabled
+constexpr uint8_t LOW_OXYGEN_TEST_START_PERCENT = 12;
+
+
+// =====================================================
+// UI TUNING CONSTANTS
+// =====================================================
+
+// Alert / reboot text
+constexpr const char* LOW_OXYGEN_TEXT = "LOW OXYGEN";
+constexpr const char* CRITICAL_ALERT_LINE1 = "CRITICAL";
+constexpr const char* CRITICAL_ALERT_LINE2 = "OXYGEN ALERT";
+constexpr const char* REBOOT_LINE1 = "GOODBYE";
+constexpr const char* REBOOT_LINE2 = "BERATNA";
+
+// Main title at the top of the display
+constexpr const char* PANEL_TITLE = "PACK VITALS";
+
+// Boot console text
+constexpr const char* BOOT_NODE_LABEL = "SHIP:";
+constexpr const char* BOOT_MODE_LABEL = "MODE:";
+constexpr const char* BOOT_MODE_VALUE = "BELTER SUITCHECK";
+constexpr const char* BOOT_FINAL_LINE1 = "all system nomina,";
+constexpr const char* BOOT_FINAL_LINE2 = "kopeng. suit stay running.";
+constexpr const char* BOOT_LOAD_LABEL = "LOAD";
+constexpr const char* BOOT_LOAD_COMPLETE_TEXT = "LOAD 100%";
+constexpr const char* BOOT_PROMPT_PREFIX = "> ";
+constexpr const char* BOOT_SECOND_LINE_PREFIX = "  ";
+
+// Boot module lines - editable at top of file
+static const char* BOOT_LINE1_TABLE[] = {
+  "pak os wakey",
+  "fo check air",
+  "o2 line",
+  "co2 scrubba",
+  "recycla spin",
+  "helmet hud",
+  "mag boots",
+  "comms fo",
+  "opa channel",
+  "pressure seal?",
+  "pressure seal",
+  "thermal line",
+  "heart beat",
+  "injector primed",
+  "suit telem",
+  "gyro stay",
+  "power bus",
+  "vac sensa",
+  "helmet seal",
+  "suit core",
+  "clamp and latch",
+  "maneuva pak",
+  "fo beltalowda",
+  "no leak"
+};
+
+static const char* BOOT_LINE2_TABLE[] = {
+  "now, kopeng...",
+  "you set or no?",
+  "fo wake up...",
+  "run now...",
+  "up, sasa...",
+  "fo sync...",
+  "lock, gut...",
+  "handshake...",
+  "open now...",
+  "you sure?",
+  "fo hold...",
+  "fo align...",
+  "fo track...",
+  "beratna...",
+  "streamin...",
+  "no spin...",
+  "route clear...",
+  "fo calibrate...",
+  "tight, ke?",
+  "shake hand...",
+  "nomina...",
+  "stand by...",
+  "all set...",
+  "no problem..."
+};
+
+// Headings above the bars
+constexpr int NUM_BARS = 5;
+constexpr const char* HEADINGS[NUM_BARS] = {
+  "OXYGEN",
+  "BREATH",
+  "CO2",
+  "HEART",
+  "PRESS"
+};
+
+```
 
 ### Change the orientation
+```cpp
 constexpr bool USE_PORTRAIT_MODE = true;  Sets to Portrait orientation  
 constexpr bool USE_PORTRAIT_MODE = false; Sets to Landscape orientation.
+```
 
 The UI adapts based on **available vertical space**, not just portrait vs. landscape mode.
 
-<img src="images/largerscreen.jpg" width="400">
+The image below shows landscape mode on 
+
+<img src="images/largerscreen2.jpg" width="400">
 
 ## Troubleshooting
 
