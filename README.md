@@ -1,7 +1,7 @@
-# PackOS – Belter Pack Display
+# PackOS – Belter Backpack Display
 ### ESP32 Telemetry UI (Inspired by *The Expanse*)
 
-![Belter Pack](images/hero.jpg)
+![backpack display](images/suitstatus.jpg)
 
 A portable, sci-fi-inspired telemetry display built on an ESP32 with a 2.8" LCD.  
 Designed for prop builds, wearables, and experimentation.
