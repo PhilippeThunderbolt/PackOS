@@ -16,7 +16,7 @@ Designed for prop builds, wearables, and experimentation.
 - Configurable "glitch mode" that adds random screen noise
 - Highly customizable for all messages and timers
 - Auto-layout adapts to screen size and orientation
-- Low cost ESP32 based module support
+- Low cost ESP32 based module support (aka "Cheap Yellow Display (CYD)")
 - USB-C or battery powered (LiPo with onboard charging)
 - Modular code structure for easy customization
 
@@ -34,7 +34,7 @@ Designed for prop builds, wearables, and experimentation.
 
 ### Tested Hardware
 
-- Hoyson 2.8" ESP32 LCD Display  
+- Hoyson 2.8" ESP32 LCD Display  aka "Cheap Yellow Display (CYD)"
   <https://www.amazon.com/dp/B0D92C9MMH>
 - Hoyson 4" ESP32 LCD Display  
  <https://www.amazon.com/dp/B0FGJJ24S1>
@@ -62,7 +62,7 @@ Any powerful and modern microcontroller with TFT_eSPI library support **should**
 
 ### Display Support
 
-- Optimized for **2.8\" 240x320**
+- Optimized for **2.8\" 240x320** (CYD)
 - Tested on **4\" 320x480**
 - UI adapts automatically based on vertical resolution
 
@@ -76,7 +76,7 @@ Any powerful and modern microcontroller with TFT_eSPI library support **should**
 
 ---
 
-## 🔌 Power
+## Power
 
 - **USB-C** → Power + charging  
 - **BAT port** → 3.7V LiPo battery only  
@@ -84,6 +84,16 @@ Any powerful and modern microcontroller with TFT_eSPI library support **should**
 ⚠️ Do NOT apply 5V to the BAT connector.
 
 ---
+
+## 3d printer files for 2.8" board (CYD)
+
+.STL and .STEP files for the backpack enclosure faceplate are in the Github 3dprint directory - many thanks to Eric Petty for creating and testing them.
+
+<img src="images/CYD1.jpg" width="300"> <img src="images/CYD2.jpg" width="300"> 
+
+Note, you can use M3 screws or similar to secure the CYD and if powering by USB-C, use a low profile USB cable (room is tight near the connector).
+
+<img src="images/CYD USB.jpg" width="400">
 
 ## Setup Guide
 
@@ -387,7 +397,7 @@ This version by Philippe Thunderbolt 4.13.2026
 
 For questions, suggestions, or issues:
 
-- Post a question on the "Expanse Cosplay" Facebook group
+- Post a question on the "The Expanse Cosplay" Facebook group
 - Open an issue in this repository
 - Or contact me via GitHub: https://github.com/PhiliipeThunderbolt
 
