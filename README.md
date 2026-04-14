@@ -390,6 +390,7 @@ Inspired by the UI and aesthetic of *The Expanse*.
 Based on original backpack code written by Mark Perino and modified by Dan Shope in April 2021.
 
 This version by Philippe Thunderbolt 4.13.2026
+3dprint files by Eric Petty
 
 ---
 
