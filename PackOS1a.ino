@@ -1,5 +1,5 @@
 /// =====================================================
-// OPA PACKOS – PACK VITALS DISPLAY
+// PACKOS – PACK VITALS DISPLAY
 // -----------------------------------------------------
 // Author: Philippe Thunderbolt
 // Project: PackOS Pack Display for Belters
