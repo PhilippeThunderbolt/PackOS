@@ -196,7 +196,7 @@ Here is a subset of settings...
 // =====================================================
 
 // Boot screen text
-constexpr const char* BOOT_TITLE = "OPA BeltOS"; //OS Name
+constexpr const char* BOOT_TITLE = "OPA PackOS"; //OS Name
 constexpr const char* BOOT_VERSION = "v4.9.26"; //Version of this program
 constexpr const char* BOOT_SYSTEM = "CANTERBURY";  //This is the name of your ship
 
