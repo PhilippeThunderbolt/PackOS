@@ -1,8 +1,8 @@
 /// =====================================================
-// OPA BELTOS – PACK VITALS DISPLAY
+// OPA PACKOS – PACK VITALS DISPLAY
 // -----------------------------------------------------
 // Author: Philippe Thunderbolt
-// Project: BeltOS Pack Display for Belters
+// Project: PackOS Pack Display for Belters
 // Platform: Arduino / ESP32 + TFT display
 // Library: TFT_eSPI
 // Date:  4/13/26
@@ -69,7 +69,7 @@ TFT_eSPI tft = TFT_eSPI();
 // =====================================================
 
 // Boot screen text
-constexpr const char* BOOT_TITLE = "BeltOS"; //OS Name
+constexpr const char* BOOT_TITLE = "PackOS"; //OS Name
 constexpr const char* BOOT_SYSTEM = "CANTERBURY ";  //This is the name of your ship
 
 // Main title at the top of the display
