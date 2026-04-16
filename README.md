@@ -366,6 +366,7 @@ The image below shows landscape mode on the 4" Hoyson display
 - Hold the **BOOT** button
 - Check that the USB cable supports data, not just charging
 - Make sure the correct COM port is selected
+- Try lowering the baud rate to 115200. 
 
 ---
 
