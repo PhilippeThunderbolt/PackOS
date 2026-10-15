@@ -18,12 +18,12 @@ Other AVR boards may work with minor modifications, primarily to pin assignments
 
 The touchscreen and SD card functions are not required.
 
-### 2. Supported and potential boards
-
 | Board / MCU | Status |
+| --- | --- |
 | Adafruit Feather 32u4 | Primary target |
 | Arduino Leonardo / Micro | Expected to work |
 | Arduino Uno / Nano (ATmega328P) | May work; memory constrained |
+| Arduino Mega 2560 | Expected to work |
 | ATmega1284P boards | Expected to work with a suitable board core |
 | Arduino Nano Every (ATmega4809) | Requires compatibility testing |
 | ATtiny85 | Not recommended |
