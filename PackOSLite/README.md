@@ -1,8 +1,9 @@
-## AVR Compatibility and Porting Guide
+## PackOSLite - memory constrained version of PackOS for older AVR based Microcontrollers
 
-PackOS Lamda is a lightweight, portrait-only version of PackOS, designed for Arduino-compatible AVR microcontrollers and a 240 × 320 ILI9341 SPI TFT display.
+PackOSLite is a lightweight, portrait-only version of PackOS, designed for Arduino-compatible AVR microcontrollers and a 240 × 320 ILI9341 SPI TFT display.
+Display name used is "PackOS Lambda" as that's a cooler name for your backpack than "Lite"
 
-The primary target is the **Adafruit Feather 32u4 Basic**, using an ATmega32U4 processor.
+The primary target was the **Adafruit Feather 32u4 Basic**, using an ATmega32U4 processor.
 
 Other AVR boards may work with minor modifications, primarily to pin assignments and display wiring.
 
